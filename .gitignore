@@ -1,0 +1,5 @@
+# Ignore Python config file with credentials
+credens.py 
+ 
+#largedata
+*.csv
