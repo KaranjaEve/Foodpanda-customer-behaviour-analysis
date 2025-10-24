@@ -67,14 +67,19 @@ ADD COLUMN age_group VARCHAR(10) AS (
 END
 );
 
--- 2.Age,gender distribution amongst cities 
+-- Age,gender distribution amongst cities 
 SELECT age_group,gender,city, COUNT(order_id) AS total_orders
 	FROM fastfood_delivery
     GROUP BY  gender,age_group,city
     ORDER BY gender,age_group,city;
 
+-- no. of customers per city
+SELECT city, COUNT(customer_id) AS customers_per_city
+	FROM fastfood_delivery
+    GROUP BY city
+    ORDER BY city DESC;
 
--- 3. total orders per food item
+-- total orders per food item
 SELECT dish_name, COUNT(order_id) AS ordered
 	FROM fastfood_delivery
     GROUP BY dish_name
@@ -87,16 +92,41 @@ SELECT dish_name, restaurant_name, COUNT(dish_name)
     ORDER BY restaurant_name;
 
 -- total revenue/restaurant
-
+SELECT restaurant_name, SUM(total_price) AS total_revenue
+    FROM fastfood_delivery
+    GROUP BY restaurant_name
+    ORDER BY total_revenue DESC;
 
 -- days with most orders
-SELECT day_of_the_week, COUNT(order_id) AS orders
+SELECT day_of_the_week, COUNT(order_id) AS day_orders
 	FROM fastfood_delivery
     GROUP BY day_of_the_week
     ORDER BY orders DESC;
     
--- How many orders were delayed. 
+-- How many orders were delayed/restaurant. 
+SELECT status, restaurant_name, COUNT(status) AS delayed_deliveries
+	FROM fastfood_delivery
+    WHERE status = 'Delayed'
+    GROUP BY restaurant_name,status
+    ORDER BY restaurant_name DESC;
+    
+-- rating vs delayed status
+SELECT status, restaurant_name, AVG(rating) AS avg_rating
+	FROM fastfood_delivery
+    WHERE status = 'Delayed'
+    GROUP BY status,restaurant_name
+	ORDER BY avg_rating DESC;
+    
+-- Age group orders- chronologically
+SELECT age_group, COUNT(order_frequency) AS orders
+	FROM fastfood_delivery
+    GROUP BY age_group 
+    ORDER BY orders DESC;
+    
+-- Which gender ordered the most
+SELECT gender, COUNT(order_frequency) as orders
+	FROM fastfood_delivery
+    GROUP BY gender
+    ORDER BY orders DESC;
+    
 
--- rating vs delayed delivery
-
--- age group and gender with most orders
