@@ -16,6 +16,8 @@ MySQL - Data storage, management , modelling and querying
 
 Power BI - Data visualisation and dashboard creation
 
+DAX - to tailor data for visualisation
+
 **Power BI Dashboard Overview**
 
 1. Customer Demographics and Segmentation
