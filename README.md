@@ -50,6 +50,10 @@ Most used payment methods
 
 Relationship between delivery time and customer rating
 
+**Dashboard Image**
+
+https://github.com/KaranjaEve/Foodpanda-customer-behaviour-analysis/blob/main/figures/Foodpanda.png
+
 
 **Future Opportunities**
 
